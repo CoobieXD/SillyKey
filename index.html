@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+	<title>SillyKey</title>
+	<link rel="icon" href="/favicon.png" sizes="16x16">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=um4duKbq">
+	<meta name="apple-mobile-web-app-title" content="SillyKey">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<style>
+		html {
+			height: 100%;
+		}
+
+		body {
+			font-family: monospace;
+			margin: 0;
+		}
+
+		.colorful {
+
+
+
+			/* Стекло */
+			/*background: linear-gradient(105deg, #ebf1f6 0%,#abd3ee 50%,#89c3eb 50%,#d5ebfb 100%);*/
+			/*background-image: linear-gradient(to right bottom, #085078, #167192, #3493a9, #5ab6bc, #85d8ce);*/
+			/*background-image: linear-gradient(to right bottom, rgba(8, 80, 120, .3), rgba(22, 113, 146, .3), rgba(52, 147, 169, .2), rgba(90, 182, 188, .1), rgba(133, 216, 206, .1));*/
+
+/*			background:
+				linear-gradient(45deg, hsla(19, 33%, 86%, 1) 0%, hsla(19, 33%, 86%, 0) 70%),
+				linear-gradient(135deg, hsla(165, 50%, 86%, 1) 10%, hsla(165, 50%, 86%, 0) 80%),
+				linear-gradient(225deg, hsla(241, 35%, 97%, 1) 10%, hsla(241, 35%, 97%, 0) 80%),
+				linear-gradient(315deg, hsla(4, 37%, 100%, 1) 100%, hsla(4, 37%, 100%, 0) 70%);*/
+
+			background:
+				linear-gradient(45deg, rgba(8, 80, 120, 0.2), rgba(8, 80, 120, 0) 70%),
+				linear-gradient(135deg, rgba(22, 113, 146, 0.2) 10%, rgba(22, 113, 146, 0) 80%),
+				linear-gradient(225deg, rgba(90, 182, 188, 0.2) 10%, rgba(90, 182, 188, 0) 80%),
+				linear-gradient(315deg, rgba(133, 216, 206, 0.2) 100%, rgba(133, 216, 206, 0) 70%);
+
+/*			background:
+				linear-gradient(45deg, hsla(213, 100%, 74%, 1) 0%, hsla(213, 100%, 74%, 0) 70%),
+				linear-gradient(135deg, hsla(213, 99%, 77%, 1) 10%, hsla(213, 99%, 77%, 0) 80%),
+				linear-gradient(225deg, hsla(213, 98%, 85%, 1) 10%, hsla(213, 98%, 85%, 0) 80%),
+				linear-gradient(315deg, hsla(210, 98%, 100%, 1) 100%, hsla(210, 98%, 100%, 0) 70%);*/
+
+
+/*	background:
+		linear-gradient(105deg, rgba(235, 241, 246, 0.5) 0%,rgba(171, 211, 238, 0.5) 80%,rgba(137, 196, 235, 0.5) 80%,rgba(213, 235, 251, 0.5) 100%),
+		linear-gradient(45deg, hsla(189, 95%, 65%, 1) 0%, hsla(189, 95%, 65%, 0) 70%),
+		linear-gradient(135deg, hsla(287, 97%, 65%, 1) 10%, hsla(287, 97%, 65%, 0) 80%),
+		linear-gradient(225deg, hsla(233, 99%, 63%, 1) 10%, hsla(233, 99%, 63%, 0) 80%),
+		linear-gradient(315deg, hsla(346, 94%, 64%, 1) 100%, hsla(346, 94%, 64%, 0) 70%);*/
+
+
+
+			/* Бежевый */
+			/*background: linear-gradient(to top left, #fffbea, #fdf2d2, #fce8bb, #fddea4, #ffd38e);*/
+			/*background: linear-gradient(to top left, #fffbea, #ffd38e);*/
+		}
+
+		#car_key {
+			background: #102830;
+			border: 2px solid #07161c;
+			border-radius: 20px 40px 40px 20px;
+			padding: 20px 40px 20px 20px;
+			width: 240px;
+			margin: 240px auto 0 auto;
+			position: relative;
+		}
+
+		#car_key:before {
+			content: '';
+			display: block;
+			width: 64px;
+			height: 40px;
+			position: absolute;
+			left: -26px;
+			top: 2px;
+			background: #102830;
+			border: 2px solid #07161c;
+			border-radius: 16px 0 0 24px;
+			z-index: -1;
+		}
+
+		#car_key:after {
+			content: '';
+			display: block;
+			width: 14px;
+			height: 14px;
+			top: 122px;
+			right: -6px;
+			position: absolute;
+			border: 7px solid #102830;
+			border-radius: 14px;
+		}
+
+		#car_key_display {
+			background: #63838f;
+			height: 100px;
+			padding: 4px 6px;
+			border-radius: 6px;
+			color: #4d6b75;
+		}
+
+		#car_key_display:before {
+			content: '';
+			display: none;
+			width: 22px;
+			height: 22px;
+			background: linear-gradient(to right, #00a1d6 20%, #353189 20%, #353189 40%, #e6242e 40%, #e6242e 60%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 70%, #bcbdc0 70%, #bcbdc0 90%, rgba(0,0,0,0) 90%);
+			position: absolute;
+			bottom: -2px;
+			transform: skew(-26deg);
+		}
+
+		#car_key_display input,
+		#car_key_display select {
+			background: 0;
+			border: 0;
+			border-bottom: 1px solid #4d6b75;
+			border-radius: 0;
+			color: #102830;
+			font-family: monospace, 'FontAwesome';
+
+			font-size: 15px;
+			width: 100%;
+			margin: 1px 0 8px;
+		}
+
+		#car_key_display input:focus,
+		#car_key_display select:focus {
+			outline-width: 0;
+			border-bottom: 1px solid #102830;
+		}
+
+		#car_key_display input::placeholder {
+			color: #4d6b75;
+		}
+
+		#car_key_display input::selection {
+			background: #4d6b75;
+			color: #63838f;
+		}
+
+		#car_key_display button {
+			background: 0;
+			border: 1px solid #4d6b75;
+			border-radius: 6px;
+			color: #102830;
+			text-transform: uppercase;
+			font-size: 7px;
+			height: 18px;
+			cursor: pointer;
+		}
+
+		#car_key_display button:hover {
+			border: 1px solid #102830;
+		}
+
+		#car_key_display button:focus {
+			outline-width: 0;
+			border: 1px solid #102830;
+		}
+
+		#car_key_buttons {
+			right: -10px;
+			height: 108px;
+			margin: 20px;
+			width: 24px;
+			position: absolute;
+			top: 0;
+		}
+
+		.car_key_button {
+			background: #bababa;
+			border-radius: 4px; /* 8px 32px 32px 8px */
+			cursor: pointer;
+			margin-bottom: 3px;
+		}
+
+		.car_key_button:nth-child(1) {
+			border-radius: 8px 32px 8px 8px;
+		}
+
+		.car_key_button:nth-child(3) {
+			border-radius: 8px 8px 32px 8px;
+		}
+
+		.car_key_button i {
+			line-height: 34px;
+			width: 20px;
+			text-align: center;
+			color: #102830;
+			opacity: 0.7;
+			transform: rotateZ(270deg);
+		}
+
+		#keys {
+			position: relative;
+			margin: 0 auto;
+			width: 300px;
+			top: -29px;
+			left: 285px;
+		}
+
+		#key {
+			width: 180px;
+			height: 180px;
+			background: url(car-key-icon.png);
+			background-size: cover;
+			transform: rotateZ(-90deg);
+			margin: 0 auto;
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			z-index: 2;
+		}
+
+		#key2 {
+			width: 180px;
+			height: 180px;
+			background: url(key-icon.png);
+			background-size: cover;
+			transform: rotateZ(-61deg);
+			margin: 0 auto;
+			position: absolute;
+			top: 34px;
+			left: -34px;
+			z-index: 3;
+		}
+
+		#tea {
+			width: 220px;
+			height: 220px;
+			background: url(tea.png), #d2d2d2;
+			background-position: center;
+			background-repeat: no-repeat;
+			border-radius: 220px;
+			padding: 40px;
+			position: absolute;
+			top: -40px;
+			left: 100px;
+		}
+
+		#tea:before {
+			content: '';
+			display: block;
+			width: 300px;
+			height: 300px;
+			z-index: -2;
+			position: relative;
+			transform: rotateZ(12deg);
+			top: 20px;
+			left: 20px;
+
+			background-color: white;
+			background-image:
+				linear-gradient(90deg, rgba(171, 58, 46, 0.5) 50%, transparent 50%),
+				linear-gradient(rgba(171, 58, 46, 0.5) 50%, transparent 50%);
+			background-size: 50px 50px;
+		}
+
+		#knife {
+			width: 280px;
+			height: 60px;
+			background: #ab3a2e;
+			position: absolute;
+			margin: 0 auto;
+			top: -85px;
+			left: 38px;
+			border: 1px solid #863737;
+			border-radius: 60px;
+			transform: rotateZ(-20deg);
+			box-shadow: 5px -12px 0 -10px #d2d2d2, 5px -12px 0 -9px #bababa;
+		}
+
+		#knife:before {
+			content: '';
+			display: block;
+			width: 10px;
+			height: 10px;
+			position: absolute;
+			left: -4px;
+			bottom: -4px;
+			border: 4px solid #d0d0d0;
+			border-radius: 10px;
+			z-index: 3;
+		}
+
+		.knife_logo {
+			width: 28px;
+			height: 28px;
+			margin: 16px 48px;
+			right: 0;
+			position: absolute;
+			border: 1px solid #fff;
+			border-radius: 8px;
+			background-image:
+				linear-gradient(90deg, transparent 33%, #fff 33%, #fff 66%, transparent 66%),
+				linear-gradient(transparent 33%, #fff 33%, #fff 66%, transparent 66%);
+			background-size: 80%;
+			background-repeat: no-repeat;
+			background-position: center
+		}
+
+		#knife:after {
+			content: '';
+			display: block;
+		}
+
+		#circle {
+/*			width: 60px;
+			height: 60px;
+			border: 7px solid #bababa;
+			border-radius: 60px;
+			position: absolute;*/
+			top: 0px;
+			left: 0px;
+			z-index: -2;
+			margin: 0 auto;
+		}
+
+		#circle:before {
+			content: '';
+			width: 58px;
+			height: 58px;
+			position: absolute;
+			border: 5px solid #bababa;
+			border-radius: 100%;
+			z-index: -1;
+			box-shadow: inset 1px 1px 0 1px #b3b3b3, -1px -1px 0 1px #b3b3b3;
+		}
+
+		#circle:after {
+/*			content: '';
+			width: 58px;
+			height: 58px;
+			position: absolute;
+			border: 8px solid #f00;
+			border-radius: 100%;
+			z-index: -1;*/
+		}
+
+		.half_circle_wrapper {
+			width: 72px;
+			height: 72px;
+			position: absolute;
+		}
+
+		.half_circle {
+			width: 36px;
+			height: 36px;
+			/*background-color: gold;*/
+			border-top-left-radius: 36px;
+			border: 5px solid #bababa;
+			border-bottom: 0;
+			border-right: 0;
+			box-shadow: inset 1px 1px 0 0px #b3b3b3, -1px -1px 0 0px #b3b3b3;
+
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		.half_circle_wrapper_z1 {
+			z-index: 0;
+			transform: translateZ(1px) rotate(388deg);
+		}
+
+		.half_circle_wrapper_z2 {
+			z-index: 1;
+			transform: translateZ(1px) rotate(136deg);
+		}
+
+		.half_circle_wrapper_z3 {
+			z-index: 2;
+			transform: translateZ(1px) rotate(220deg);
+		}
+
+		.half_circle_wrapper_z4 {
+			z-index: 3;
+			transform: translateZ(1px) rotate(260deg);
+		}
+
+		.half_circle_wrapper_z1 .half_circle {
+			/*display: none;*/
+			/*border-color: #f00;*/
+		}
+
+		.half_circle_wrapper_z2 .half_circle {
+			/*display: none;*/
+			/*border-color: #0f0;*/
+		}
+
+		.half_circle_wrapper_z3 .half_circle {
+			/*display: none;*/
+			/*border-color: #00f;*/
+		}
+
+		.half_circle_wrapper_z4 .half_circle {
+			/*display: none;*/
+			/*border-color: #ff0;*/
+		}
+
+		#status_bar {
+			font-size: 8px;
+			color: #102830;
+		}
+
+		#car_key_display .secret {
+			-webkit-text-security: disc;
+		}
+
+		#car_key_display:active .secret {
+			-webkit-text-security: none;
+		}
+
+		#eye {
+			display: none;
+			cursor: pointer;
+		}
+
+		.text_security {
+			-webkit-text-security: disc;
+		}
+
+		#hash_icon {
+			display: none;
+			position: absolute;
+			width: 16px;
+			height: 16px;
+			top: 36px;
+			right: 48px;
+			border: none;
+			/*
+			border: 1px solid #4d6b75;
+			border-radius: 3px;
+			opacity: 0.5;
+			*/
+		}
+
+		.clearfix::after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		@media only screen and (max-width: 720px) {
+			html,
+			body {
+				background: #102830 !important;
+			}
+
+			#keys,
+			#tea,
+			#car_key_buttons,
+			#car_key:before,
+			#car_key:after {
+				display: none;
+			}
+
+			#car_key {
+				border: none;
+				border-radius: 0;
+				width: 100%;
+				margin: 0;
+				box-sizing: border-box;
+				padding: 40px 16px;
+			}
+
+			#hash_icon {
+				top: 56px;
+				right: 24px;
+			}
+
+			#car_key_display input,
+			#car_key_display select {
+				padding: 2px 0;
+			}
+		}
+	</style>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+</head>
+<body class="colorful">
+
+
+
+	<div id="paper_clipboard_clear"></div>
+	<div id="car_key">
+		<div id="car_key_display">
+			<div id="status_bar">
+				<i class="fas fa-signal"></i>
+				<i class="fas fa-car"></i>
+				<i class="fas fa-bell"></i>
+				<i class="fas fa-key"></i>
+				<i class="fas fa-battery-three-quarters" style="float: right;"></i>
+			</div>
+			<input id="master" class="hash_part" type="text" placeholder="master" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="-webkit-text-security: disc;">
+			<img id="hash_icon" src="" alt="">
+			<div style="width: 70%; float: left;">
+				<input id="service" class="hash_part" type="text" placeholder="service" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+			</div>
+			<div style="width: 26%; float: left; margin-left: 4%;">
+				<select name="year" id="year" class="hash_part" onChange="$('.hash_part').trigger('keyup');">
+					<option value="2018">2018</option>
+					<option value="2019">2019</option>
+					<option value="2020">2020</option>
+				</select>
+			</div>
+			<input id="password" type="text" value="" placeholder="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="/*width: 71%*/" onClick="this.select();" readonly>
+			<i class="far fa-eye" id="eye" style="color: #102830;position: absolute;right: 46px;bottom: 36px;"></i>
+		</div>
+		<div id="car_key_buttons">
+			<div class="car_key_button" onClick="$('.hash_part').trigger('keyup');">
+				<i class="fas fa-unlock"></i>
+			</div>
+			<div class="car_key_button" onClick="$('.hash_part').trigger('keyup');">
+				<i class="fas fa-car"></i>
+			</div>
+			<div class="car_key_button" onClick="$('.hash_part').trigger('keyup');">
+				<i class="fas fa-lock"></i>
+			</div>
+		</div>
+	</div>
+	<div id="keys">
+		<div id="key"></div>
+		<div id="key2"></div>
+		<div id="circle">
+			<div class="half_circle_wrapper half_circle_wrapper_z1">
+				<div class="half_circle"></div>
+			</div>
+			<div class="half_circle_wrapper half_circle_wrapper_z2">
+				<div class="half_circle"></div>
+			</div>
+			<div class="half_circle_wrapper half_circle_wrapper_z3">
+				<div class="half_circle"></div>
+			</div>
+			<div class="half_circle_wrapper half_circle_wrapper_z4">
+				<div class="half_circle"></div>
+			</div>
+		</div>
+		<div id="knife">
+			<div class="knife_logo"></div>
+		</div>
+	</div>
+	<div id="tea" onclick="copyToClipboard('password')"></div>
+
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="sha256.min.js"></script>
+	<script src="sha256.js"></script>
+	<script src="ascii85.js"></script>
+	<script src="base62.js"></script>
+	<script src="base58.js"></script>
+	<script src="pnglib.js"></script>
+	<script src="identicon.js"></script>
+	<script>
+		var genRand = function(min=0, max=Number.MAX_SAFE_INTEGER) {
+			return Math.floor(min + Math.random() * (max + 1 - min));
+		}
+
+		var hex2ascii = function(s){
+			var hex = s.toString();
+			var str = '';
+			for (var n = 0; n < hex.length; n += 2) {
+				str += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
+			}
+			return str;
+		}
+
+		// pass58		[A-Za-z0-9][^0OIl]
+		// pass62		[A-Za-z0-9]
+		// pass64_url	[A-Za-z0-9]*-
+		// pass64_id	[A-Za-z0-9]_-
+		// pass64		[A-Za-z0-9]+/
+		// pass85		[A-Za-z0-9]!#$%&()*+-;<=>?@^_`{|}~
+
+		var base58_encode = function(text){
+			var bytes = [];
+			for (var i = 0; i < text.length; i++) {
+				bytes.push(text[i].charCodeAt(0));
+			}
+			return Base58.encode(bytes);
+		};
+
+		var timer_hash_animation = setInterval(function() {
+			var hash = base58_encode(hex2ascii(sha256(genRand().toString())));
+			$(".hashing").val(hash.substr(0, 24));
+		}, 1000/60);
+
+
+
+
+
+		var timer_to_clear;
+		var worker = new Worker("worker.js");
+		$(".hash_part").bind("keyup", function(e){
+			if(timer_to_clear){
+				clearTimeout(timer_to_clear);
+			}
+			timer_to_clear = setTimeout(function() {
+				$("input.hash_part").val('');
+				$("#password").val('*timeout 300 sec*');
+				location.reload();
+			}, 300*1000);
+			var master = $('#master').val();
+			var options = {
+				size: 16,
+				margin: 0,
+				foreground: [16,40,48,255],
+				background: [0,0,0,0],
+				saturation: 0.5,
+				// brightness: 0.5,
+				format: 'svg'
+			};
+			var hash_icon_data = new Identicon(sha256(master), options).toString();
+			var src = 'data:image/svg+xml;base64,' + hash_icon_data;
+			$('#hash_icon').attr('src', src);
+			$('#hash_icon').show();
+			if(master!==''){
+				var service = $('#service').val();
+				if(service!==''){
+					var year = $('#year').val();
+					var keys = master + service + year + 'why not?';
+					//console.log(keys);
+
+					// $("#password" ).removeClass('secret');
+					$('#password').addClass('hashing');
+					if(window.Worker && 1==1) {
+						worker.terminate();
+						worker = new Worker("worker.js");
+						worker.postMessage(keys);
+						worker.onmessage = function(e) {
+							var pass = base58_encode(hex2ascii(e.data));
+							console.log(pass);
+							// $("#password" ).addClass('secret');
+							$('#password').removeClass('hashing');
+							document.getElementById("password").value = pass.substr(0, 24)/*+'~>'*/;
+						}
+					} else {
+						var hash = keys;
+						console.time('recursive_hashing');
+						for(var i=0; i<3; i++){
+							hash = sha256(hash);
+						}
+						console.timeEnd('recursive_hashing');
+						var pass = base58_encode(hex2ascii(hash));
+						// console.log(pass);
+						setTimeout(function() {
+							// $("#password" ).addClass('secret');
+							$('#password').removeClass('hashing');
+							document.getElementById("password").value = pass.substr(0, 24)/*+'~>'*/;
+						}, 300);
+					}
+
+				}
+			} else {
+				document.getElementById("password").value = '';
+			}
+		});
+
+
+
+		$("#eye").bind("click", function(e){
+			$(this).toggleClass('fa-eye');
+			$(this).toggleClass('fa-eye-slash');
+			$('#password').toggleClass('text_security');
+		});
+
+
+
+		function copyToClipboard(id) {
+			// console.log('test');
+			// var hash = base58_encode(hex2ascii(sha256(genRand().toString())));
+			// $("#password").val(hash.substr(0, 24));
+			// document.getElementById(id).select();
+			// document.execCommand("copy");
+			// if($( "#password" ).keydown) {
+			// 	copyToClipboard(id);
+			// }
+		}
+
+	</script>
+</body>
+</html>
